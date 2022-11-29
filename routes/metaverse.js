@@ -20,4 +20,17 @@ router.post('/', jsonParser, function(req, res, next) {
     })
 });
 
+/* GET users listing. */
+router.post('/verify-jwt', jsonParser, function(req, res, next) {
+    const authHeader = req.headers['authorization']
+    const token = authHeader && authHeader.split(' ')[1]
+
+    if (token == null) return res.sendStatus(401)
+
+    const decode = jwt.verify(token, process.env.TOKEN_SECRET);
+    res.json({
+        "decode": decode
+    })
+});
+
 module.exports = router;
