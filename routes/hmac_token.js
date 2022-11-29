@@ -2,6 +2,7 @@ var express = require('express');
 var router = express.Router();
 var bodyParser = require('body-parser')
 
+const Crypto = require('crypto');
 const jwt = require('jsonwebtoken');
 const dotenv = require('dotenv');
 dotenv.config();
@@ -13,12 +14,16 @@ function generateAccessToken(tokenUri) {
 }
 
 /* GET users listing. */
-router.post('/', jsonParser, function(req, res, next) {
-    const token = generateAccessToken({ tokenUri: req.body.token_uri });
+router.get('/', jsonParser, function(req, res, next) {
+    const token = generateAccessToken({ tokenUri:res.token_uri });
+    const token1 = Crypto.createHmac('sha256', 'a secret').update('data').digest('hex');
     res.json({
-        "jwt": token
+        "HMAC TOKEN":token1,
+        "jwt": token,
+        
     })
-    
+
+    console.log(token); 
 });
 
 module.exports = router;
