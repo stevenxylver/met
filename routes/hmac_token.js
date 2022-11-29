@@ -16,11 +16,9 @@ function generateAccessToken(tokenUri) {
 /* GET users listing. */
 router.get('/', jsonParser, function(req, res, next) {
     const token = generateAccessToken({ tokenUri:res.token_uri });
-    const token1 = Crypto.createHmac('sha256', 'a secret').update('data').digest('hex');
+    const token1 = Crypto.createHmac('sha256', token).update('data').digest('hex');
     res.json({
-        "HMAC TOKEN":token1,
-        "jwt": token,
-        
+        "HMAC_TOKEN":token1,
     })
 
     console.log(token); 
