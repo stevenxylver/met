@@ -18,6 +18,7 @@ router.post('/', jsonParser, function(req, res, next) {
     res.json({
         "jwt": token
     })
+    
 });
 
 /* GET users listing. */
