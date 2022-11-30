@@ -8,13 +8,13 @@ dotenv.config();
 
 var jsonParser = bodyParser.json()
 
-function generateAccessToken(tokenUri) {
-    return jwt.sign(tokenUri, process.env.TOKEN_SECRET, { expiresIn: '7d' });
+function generateAccessToken(users) {
+    return jwt.sign(users, process.env.TOKEN_SECRET, { expiresIn: '7d' });
 }
 
 /* GET users listing. */
 router.post('/', jsonParser, function(req, res, next) {
-    const token = generateAccessToken({ tokenUri: req.body.token_uri });
+    const token = generateAccessToken({ users: req.body.users });
     res.json({
         "jwt": token
     })
@@ -29,9 +29,7 @@ router.post('/verify-jwt', jsonParser, function(req, res, next) {
     if (token == null) return res.sendStatus(401)
 
     const decode = jwt.verify(token, process.env.TOKEN_SECRET);
-    res.json({
-        "decode": decode
-    })
+    res.json(decode);
 });
 
 module.exports = router;
