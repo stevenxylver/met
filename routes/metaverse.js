@@ -12,24 +12,55 @@ function generateAccessToken(users) {
     return jwt.sign(users, process.env.TOKEN_SECRET, { expiresIn: '7d' });
 }
 
-/* GET users listing. */
 router.post('/', jsonParser, function(req, res, next) {
-    const token = generateAccessToken({ users: req.body.users });
+    const token = generateAccessToken(req.body.users);
     res.json({
         "jwt": token
     })
-    
 });
 
-/* GET users listing. */
 router.post('/verify-jwt', jsonParser, function(req, res, next) {
     const authHeader = req.headers['authorization']
     const token = authHeader && authHeader.split(' ')[1]
 
     if (token == null) return res.sendStatus(401)
 
-    const decode = jwt.verify(token, process.env.TOKEN_SECRET);
-    res.json(decode);
+    try { 
+        const decode = jwt.verify(token, process.env.TOKEN_SECRET);
+        res.json({
+            'success': true,
+            'data': decode,
+            'message': null
+        });
+    } catch (error) {
+        res.json({
+            'success': false,
+            'data': null,
+            'message': error
+        });
+    }
+});
+
+router.post('/did-attribute', jsonParser, function(req, res, next) {
+    const authHeader = req.headers['authorization']
+    const token = authHeader && authHeader.split(' ')[1]
+
+    if (token == null) return res.sendStatus(401)
+
+    try { 
+        const decode = jwt.verify(token, process.env.TOKEN_SECRET);
+        res.json({
+            'success': true,
+            'data': req.body.data,
+            'message': null
+        });
+    } catch (error) {
+        res.json({
+            'success': false,
+            'data': null,
+            'message': error
+        });
+    }
 });
 
 module.exports = router;
