@@ -5,7 +5,7 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
 // var indexRouter = require('./routes/index');
-// var usersRouter = require('./routes/users');
+var usersRouter = require('./routes/users');
 var metaverseRouter = require('./routes/metaverse');
 var hmacRouter = require('./routes/hmac_token');
 
@@ -21,8 +21,17 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+const db = require("./database/models");
+db.sequelize.sync()
+.then(() => {
+  console.log("Synced db.");
+})
+.catch((err) => {
+  console.log("Failed to sync db: " + err.message);
+});
+
 // app.use('/', indexRouter);
-// app.use('/users', usersRouter);
+app.use('/users', usersRouter);
 app.use('/metaverse', metaverseRouter);
 app.use('/hmac_token', hmacRouter);
 
