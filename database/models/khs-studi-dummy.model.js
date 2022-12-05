@@ -1,5 +1,5 @@
 module.exports = (sequelize, Sequelize) => {
-    const KhsStudyDummy = sequelize.define("tbl_khs_studi_dummy", {
+    const KHSStudiDummy = sequelize.define("tbl_khs_studi_dummy", {
         id_reg_pd: {
             type: Sequelize.INTEGER
         },
@@ -21,13 +21,19 @@ module.exports = (sequelize, Sequelize) => {
         nilai_transfer: {
             type: Sequelize.STRING
         },
-        createdAt: {
+        created_at: {
             type: Sequelize.DATE
         },
-        updatedAt: {
+        updated_at: {
             type: Sequelize.DATE
         },
+    },
+    {
+      timestamps: false,
+      sequelize,
+      modelName: "KHSStudiDummy",
+      tableName: "tbl_khs_studi_dummy",
     });
   
-    return KhsStudyDummy;
+    return KHSStudiDummy;
 };

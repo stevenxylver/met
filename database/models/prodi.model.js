@@ -12,12 +12,18 @@ module.exports = (sequelize, Sequelize) => {
         nama_prodi: {
             type: Sequelize.STRING
         },
-        createdAt: {
+        created_at: {
             type: Sequelize.DATE
         },
-        updatedAt: {
+        updated_at: {
             type: Sequelize.DATE
         },
+    },
+    {
+        timestamps: false,
+        sequelize,
+        modelName: 'Prodi',
+        tableName: 'tbl_prodi'
     });
   
     return Prodi;

@@ -18,12 +18,18 @@ module.exports = (sequelize, Sequelize) => {
         gelar: {
             type: Sequelize.STRING
         },
-        createdAt: {
+        created_at: {
             type: Sequelize.DATE
         },
-        updatedAt: {
+        updated_at: {
             type: Sequelize.DATE
         },
+    },
+    {
+      timestamps: false,
+      sequelize,
+      modelName: "NinaDummy",
+      tableName: "tbl_nina_dummy",
     });
   
     return NinaDummy;

@@ -15,12 +15,18 @@ module.exports = (sequelize, Sequelize) => {
         bentuk_pendidikan: {
             type: Sequelize.STRING
         },
-        createdAt: {
+        created_at: {
             type: Sequelize.DATE
         },
-        updatedAt: {
+        updated_at: {
             type: Sequelize.DATE
         },
+    },
+    {
+      timestamps: false,
+      sequelize,
+      modelName: "UniversitasDummy",
+      tableName: "tbl_universitas_dummy",
     });
   
     return UniversitasDummy;

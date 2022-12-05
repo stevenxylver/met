@@ -21,7 +21,7 @@ db.sequelize = sequelize;
 
 db.users = require("./users.model.js")(sequelize, Sequelize);
 db.avatar_dummy = require("./avatar-dummy.model.js")(sequelize, Sequelize);
-db.khs_study_dummy = require("./khs-studi-dummy.model.js")(sequelize, Sequelize);
+db.khs_studi_dummy = require("./khs-studi-dummy.model.js")(sequelize, Sequelize);
 db.log_ijazah = require("./log-ijazah.model.js")(sequelize, Sequelize);
 db.log_login = require("./log-login.model.js")(sequelize, Sequelize);
 db.mahasiswa_dummy = require("./mahasiswa-dummy.model.js")(sequelize, Sequelize);

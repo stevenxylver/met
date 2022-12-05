@@ -33,12 +33,18 @@ module.exports = (sequelize, Sequelize) => {
         status: {
             type: Sequelize.STRING
         },
-        createdAt: {
+        created_at: {
             type: Sequelize.DATE
         },
-        updatedAt: {
+        updated_at: {
             type: Sequelize.DATE
         },
+    },
+    {
+      timestamps: false,
+      sequelize,
+      modelName: "MahasiswaDummy",
+      tableName: "tbl_mahasiswa_dummy",
     });
   
     return MahasiswaDummy;

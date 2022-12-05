@@ -42,12 +42,18 @@ module.exports = (sequelize, Sequelize) => {
         negara: {
             type: Sequelize.STRING
         },
-        createdAt: {
+        created_at: {
             type: Sequelize.DATE
         },
-        updatedAt: {
+        updated_at: {
             type: Sequelize.DATE
         },
+    },
+    {
+        timestamps: false,
+        sequelize,
+        modelName: 'Universitas',
+        tableName: 'tbl_universitas'
     });
   
     return Universitas;
