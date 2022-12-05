@@ -23,17 +23,17 @@ exports.get_data_log = async (req, res) => {
 
         const dataLogin = await LogLogin.findAll({
             where: {
-                pt    : req.body.pt,
-                prodi : req.body.prodi,
-                nim   : req.body.nim,
+                pt    : req.body.pt || null,
+                prodi : req.body.prodi || null,
+                nim   : req.body.nim || null,
             },
         });
 
         const dataIjazah = await LogIjazah.findAll({
             where: {
-                pt    : req.body.pt,
-                prodi : req.body.prodi,
-                nim   : req.body.nim,
+                pt    : req.body.pt || null,
+                prodi : req.body.prodi || null,
+                nim   : req.body.nim || null,
             },
         });
 

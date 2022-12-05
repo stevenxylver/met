@@ -22,8 +22,8 @@ exports.get_selected_khs_studi_dummy = async (req, res) => {
 
         KHSStudiDummy.findOne({
             where: {
-              id_reg_pd     : req.body.id_reg_pd,
-              kode_semester : req.body.kode_semester,
+              id_reg_pd     : req.body.id_reg_pd || null,
+              kode_semester : req.body.kode_semester || null,
             },
         })
         .then(async data => {

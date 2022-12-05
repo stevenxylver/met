@@ -8,13 +8,13 @@ const dotenv = require('dotenv');
 dotenv.config();
 
 exports.login = async (req, res) => {
-    
-    const client_id     = req.body.client_id;
-    const client_secret = req.body.client_secret;
-    const username      = req.body.username;
-    const password      = req.body.password;
 
-    try { 
+    try {
+        const client_id     = req.body.client_id || null;
+        const client_secret = req.body.client_secret || null;
+        const username      = req.body.username || null;
+        const password      = req.body.password || null;
+        
         Client.findOne({
             where: {
                 clientId     : client_id,
