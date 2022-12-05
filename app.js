@@ -1,13 +1,13 @@
-var createError = require('http-errors');
-var express = require('express');
-var path = require('path');
+var createError  = require('http-errors');
+var express      = require('express');
+var path         = require('path');
 var cookieParser = require('cookie-parser');
-var logger = require('morgan');
+var logger       = require('morgan');
 
-var usersRouter = require('./routes/users');
-var avatarRouter = require('./routes/avatar');
-var khsRouter = require('./routes/khs');
-var logRouter = require('./routes/log');
+var usersRouter     = require('./routes/users');
+var avatarRouter    = require('./routes/avatar');
+var khsRouter       = require('./routes/khs');
+var logRouter       = require('./routes/log');
 var mahasiswaRouter = require('./routes/mahasiswa');
 var metaverseRouter = require('./routes/metaverse');
 
