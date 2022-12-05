@@ -1,11 +1,11 @@
-const jwt         = require('jsonwebtoken');
-const db          = require("../../database/models");
-const AvatarDummy = db.avatar_dummy;
-const Op          = db.Sequelize.Op;
-const dotenv      = require('dotenv');
+const jwt       = require('jsonwebtoken');
+const db        = require("../../database/models");
+const Mahasiswa = db.mahasiswa;
+const Op        = db.Sequelize.Op;
+const dotenv    = require('dotenv');
 dotenv.config();
 
-exports.get_avatar_dummy = async (req, res) => {
+exports.get_mahasiswa = async (req, res) => {
     const authHeader = req.headers['authorization']
     const token      = authHeader && authHeader.split(' ')[1]
 
@@ -20,7 +20,7 @@ exports.get_avatar_dummy = async (req, res) => {
     try {        
         jwt.verify(token, process.env.TOKEN_SECRET);
 
-        AvatarDummy.findAll()
+        Mahasiswa.findAll()
         .then(async data => {
             if(data) {
                 res.send({
@@ -32,10 +32,11 @@ exports.get_avatar_dummy = async (req, res) => {
                 res.status(404).send({
                     success : false,
                     data    : null,
-                    message : `Avatar not found`
+                    message : `Mahasiswa not found`
                 });
             }
         })
+
     } catch (error) {
         res.status(500).send({
             success : false,
