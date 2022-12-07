@@ -33,6 +33,12 @@ module.exports = (sequelize, Sequelize) => {
         updatedAt: {
             type: Sequelize.DATE
         },
+    },
+    {
+        timestamps: false,
+        sequelize,
+        modelName: 'LogLogin',
+        tableName: 'tbl_log_login'
     });
   
     return LogLogin;

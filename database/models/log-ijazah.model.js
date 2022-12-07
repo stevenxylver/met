@@ -36,6 +36,12 @@ module.exports = (sequelize, Sequelize) => {
         updatedAt: {
             type: Sequelize.DATE
         },
+    },
+    {
+        timestamps: false,
+        sequelize,
+        modelName: 'LogIjazah',
+        tableName: 'tbl_log_ijazah'
     });
   
     return LogIjazah;

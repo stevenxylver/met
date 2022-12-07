@@ -15,6 +15,11 @@ module.exports = (sequelize, Sequelize) => {
         updatedAt: {
             type: Sequelize.DATE
         },
+    }, {
+        timestamps: false,
+        sequelize,
+        modelName: "Client",
+        tableName: "tbl_clients",
     });
   
     return Client;

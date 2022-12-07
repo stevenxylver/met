@@ -1,11 +1,11 @@
 const jwt       = require('jsonwebtoken');
 const db        = require("../../database/models");
-const Mahasiswa = db.mahasiswa;
+const NinaDummy = db.nina_dummy;
 const Op        = db.Sequelize.Op;
 const dotenv    = require('dotenv');
 dotenv.config();
 
-exports.get_nina = async (req, res) => {
+exports.get_selected_nina_dummy = async (req, res) => {
     const authHeader = req.headers['authorization']
     const token      = authHeader && authHeader.split(' ')[1]
 
@@ -17,10 +17,14 @@ exports.get_nina = async (req, res) => {
         });
     }
 
-    try {        
+    try {
         jwt.verify(token, process.env.TOKEN_SECRET);
 
-        Mahasiswa.findAll()
+        NinaDummy.findOne({
+            where: {
+                id_req_pd: req.body.id_req_pd,
+            },
+        })
         .then(async data => {
             if(data) {
                 res.send({
@@ -32,7 +36,7 @@ exports.get_nina = async (req, res) => {
                 res.status(404).send({
                     success : false,
                     data    : null,
-                    message : `Mahasiswa not found`
+                    message : `Nina not found`
                 });
             }
         })

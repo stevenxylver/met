@@ -20,7 +20,7 @@ module.exports = (sequelize, Sequelize) => {
         sequelize,
         modelName: "AvatarDummy",
         tableName: "tbl_avatar_dummy",
-      });
+    });
   
     return AvatarDummy;
 };

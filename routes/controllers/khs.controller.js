@@ -17,7 +17,7 @@ exports.get_selected_khs_studi_dummy = async (req, res) => {
         });
     }
 
-    try {        
+    try {
         jwt.verify(token, process.env.TOKEN_SECRET);
 
         KHSStudiDummy.findOne({

@@ -25,7 +25,7 @@ router.post('/verify-jwt', jsonParser, function(req, res, next) {
 
     if (token == null) return res.sendStatus(401)
 
-    try { 
+    try {
         const decode = jwt.verify(token, process.env.TOKEN_SECRET);
         res.json({
             'success': true,
@@ -47,7 +47,7 @@ router.post('/did-attribute', jsonParser, function(req, res, next) {
 
     if (token == null) return res.sendStatus(401)
 
-    try { 
+    try {
         const decode = jwt.verify(token, process.env.TOKEN_SECRET);
         res.json({
             'success': true,
