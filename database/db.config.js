@@ -1,7 +1,7 @@
 module.exports = {
     HOST: "localhost",
     USER: "root",
-    PASSWORD: "Aryosengkun1!",
+    PASSWORD: "aryosengkuni",
     DB: "db_portal_metavers",
     dialect: "mysql",
     pool: {
