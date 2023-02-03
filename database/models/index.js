@@ -34,5 +34,10 @@ db.universitas_dummy = require("./universitas-dummy.model.js")(sequelize, Sequel
 db.universitas = require("./universitas.model.js")(sequelize, Sequelize);
 db.client = require("./client.model.js")(sequelize, Sequelize);
 db.quests = require("./quests.model.js")(sequelize, Sequelize);
+db.quest_users = require("./quest-users.model.js")(sequelize, Sequelize);
+
+db.quest_users.belongsTo(db.quests, {
+  foreignKey: 'quest_id'
+});
 
 module.exports = db;

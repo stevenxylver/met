@@ -7,7 +7,7 @@ const dotenv = require("dotenv");
 dotenv.config();
 
 const db = require("../database/models");
-const AvatarDummy = db.avatar - dummy;
+const AvatarDummy = db.avatar_dummy;
 
 var jsonParser = bodyParser.json();
 
