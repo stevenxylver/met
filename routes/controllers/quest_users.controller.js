@@ -23,8 +23,7 @@ exports.get_specific_quests = async (req, res) => {
             include: [{
                 model: Quests
             }]
-        },
-        );
+        });
 
         res.send({
             success : true,

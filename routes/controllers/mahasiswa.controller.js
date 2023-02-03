@@ -5,6 +5,8 @@ const MahasiswaDummy   = db.mahasiswa_dummy;
 const UniversitasDummy = db.universitas_dummy;
 const ProdiDummy       = db.prodi_dummy;
 const User             = db.users;
+const Quests           = db.quests;
+const QuestUsers       = db.quest_users;
 const LogLogin         = db.log_login;
 const Op               = db.Sequelize.Op;
 const { v4: uuid }     = require('uuid');
@@ -95,6 +97,14 @@ exports.insert_user = async (req, res) => {
                     nim            : req.body.nim,
                     status         : 'Aktif',
                     wallet_address : req.body.wallet
+                });
+
+                const quests = await Quests.findAll({});
+                quests.forEach(async element => {
+                    await QuestUsers.create({
+                        user_id : createUser.id,
+                        quest_id : element.id,
+                    });
                 });
 
                 const log = await LogLogin.create({
