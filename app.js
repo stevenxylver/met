@@ -13,6 +13,7 @@ var mahasiswaRouter = require('./routes/mahasiswa');
 var ninaRouter      = require('./routes/nina');
 var prodiRouter     = require('./routes/prodi');
 var metaverseRouter = require('./routes/metaverse');
+var questsRouter = require('./routes/quests');
 
 var app = express();
 
@@ -43,6 +44,7 @@ app.use('/log', logRouter);
 app.use('/mahasiswa', mahasiswaRouter);
 app.use('/nina', ninaRouter);
 app.use('/prodi', prodiRouter);
+app.use('/quests', questsRouter);
 
 app.use(function(req, res, next) {
     next(createError(404));

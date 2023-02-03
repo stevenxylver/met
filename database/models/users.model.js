@@ -30,6 +30,9 @@ module.exports = (sequelize, Sequelize) => {
         wallet_address: {
             type: Sequelize.TEXT
         },
+        token: {
+            type: Sequelize.STRING
+        },
         createdAt: {
             type: Sequelize.DATE
         },

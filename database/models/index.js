@@ -33,5 +33,6 @@ db.universitas_detail = require("./universitas-detail.model.js")(sequelize, Sequ
 db.universitas_dummy = require("./universitas-dummy.model.js")(sequelize, Sequelize);
 db.universitas = require("./universitas.model.js")(sequelize, Sequelize);
 db.client = require("./client.model.js")(sequelize, Sequelize);
+db.quests = require("./quests.model.js")(sequelize, Sequelize);
 
 module.exports = db;
