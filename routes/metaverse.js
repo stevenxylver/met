@@ -47,10 +47,10 @@ router.post("/verify-jwt", jsonParser, function (req, res, next) {
 });
 
 router.post("/did-attribute", jsonParser, async function (req, res, next) {
-  // const authHeader = req.headers["authorization"];
-  // const token = authHeader && authHeader.split(" ")[1];
+  const authHeader = req.headers["authorization"];
+  const token = authHeader && authHeader.split(" ")[1];
 
-  // if (token == null) return res.sendStatus(401);
+  if (token == null) return res.sendStatus(401);
 
   const avatar = await AvatarDummy.findOne({
     where: {
@@ -72,7 +72,7 @@ router.post("/did-attribute", jsonParser, async function (req, res, next) {
 
   if (avatar) {
     try {
-      // const decode = jwt.verify(token, process.env.TOKEN_SECRET);
+      const decode = jwt.verify(token, process.env.TOKEN_SECRET);
       res.json({
         success: true,
         data: avatar,
