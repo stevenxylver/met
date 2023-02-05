@@ -7,7 +7,9 @@ const dotenv = require("dotenv");
 dotenv.config();
 
 const db = require("../database/models");
-const AvatarDummy = db.avatar_dummy;
+const AvatarDummy    = db.avatar_dummy;
+const MahasiswaDummy = db.mahasiswa_dummy;
+const Users          = db.users;
 
 var jsonParser = bodyParser.json();
 
@@ -45,10 +47,10 @@ router.post("/verify-jwt", jsonParser, function (req, res, next) {
 });
 
 router.post("/did-attribute", jsonParser, async function (req, res, next) {
-  const authHeader = req.headers["authorization"];
-  const token = authHeader && authHeader.split(" ")[1];
+  // const authHeader = req.headers["authorization"];
+  // const token = authHeader && authHeader.split(" ")[1];
 
-  if (token == null) return res.sendStatus(401);
+  // if (token == null) return res.sendStatus(401);
 
   const avatar = await AvatarDummy.findOne({
     where: {
@@ -56,12 +58,26 @@ router.post("/did-attribute", jsonParser, async function (req, res, next) {
     },
   });
 
+  const users = await Users.findOne({
+    where: {
+      id: req.body.data.user_id,
+    }
+  });
+
+  const mahasiswaDummy = await MahasiswaDummy.findOne({
+    where: {
+      nim: users.nim,
+    }
+  });
+
   if (avatar) {
     try {
-      const decode = jwt.verify(token, process.env.TOKEN_SECRET);
+      // const decode = jwt.verify(token, process.env.TOKEN_SECRET);
       res.json({
         success: true,
         data: avatar,
+        users: users,
+        mahasiswa: mahasiswaDummy,
         message: null,
       });
     } catch (error) {
