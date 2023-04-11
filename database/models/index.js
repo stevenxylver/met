@@ -2,16 +2,16 @@ const dbConfig = require("../db.config.js");
 
 const Sequelize = require("sequelize");
 const sequelize = new Sequelize(dbConfig.DB, dbConfig.USER, dbConfig.PASSWORD, {
-  host: dbConfig.HOST,
-  dialect: dbConfig.dialect,
-  operatorsAliases: false,
+    host: dbConfig.HOST,
+    dialect: dbConfig.dialect,
+    operatorsAliases: 1,
 
-  pool: {
-    max: dbConfig.pool.max,
-    min: dbConfig.pool.min,
-    acquire: dbConfig.pool.acquire,
-    idle: dbConfig.pool.idle
-  }
+    pool: {
+        max: dbConfig.pool.max,
+        min: dbConfig.pool.min,
+        acquire: dbConfig.pool.acquire,
+        idle: dbConfig.pool.idle
+    }
 });
 
 const db = {};
@@ -37,7 +37,7 @@ db.quests = require("./quests.model.js")(sequelize, Sequelize);
 db.quest_users = require("./quest-users.model.js")(sequelize, Sequelize);
 
 db.quest_users.belongsTo(db.quests, {
-  foreignKey: 'quest_id'
+    foreignKey: 'quest_id'
 });
 
 module.exports = db;
